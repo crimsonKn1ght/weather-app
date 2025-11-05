@@ -1,54 +1,128 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root{
+  --bg:#202224;
+  --card:#ffffff;
+  --text:#0f1115;
+  --muted:#6b7280;
+  --primary:#0d6efd;
+  --primary-hover:#0b5ed7;
+  --ring:rgba(13,110,253,.35);
+  --shadow:0 12px 28px rgba(0,0,0,.16), 0 6px 12px rgba(0,0,0,.10);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:var(--bg);
+  color:#f5f7fb;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app{max-width:1200px;margin:0 auto;padding:40px 20px}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.header h1{margin:0;font-size:42px;font-weight:800}
+
+.search{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap:12px;
+  margin-bottom:24px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.input{
+  padding:12px 14px;border-radius:10px;border:1px solid #3a3d42;
+  background:#2a2d31;color:white;font-size:16px;
+}
+.input:focus{outline:none;border-color:var(--primary)}
+
+.button{
+  background:var(--primary);color:white;border:none;
+  padding:12px 16px;border-radius:10px;font-weight:600;
+  cursor:pointer;
+}
+.button.secondary{background:#4b5563}
+
+/* LOADING + ERROR */
+.alert{background:#ef444422;border:1px solid #ef4444;color:#ffdddd;padding:10px;border-radius:10px}
+.spinner{margin:20px auto;border:4px solid #fff3;border-top:4px solid white;border-radius:50%;width:32px;height:32px;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* -------- STATIC DESKTOP GRID -------- */
+.grid{
+  display:grid;
+  grid-template-columns: 2fr 1.2fr; /* Left large, right medium */
+  gap:20px;
+  align-items:start;
 }
 
-.card {
-  padding: 2em;
+/* Cards */
+.card{
+  background:white;color:var(--text);border-radius:16px;
+  box-shadow:var(--shadow);padding:22px;
 }
 
-.read-the-docs {
-  color: #888;
+/* CURRENT WEATHER CARD */
+.weather-header{font-size:22px;font-weight:800;margin-bottom:4px}
+.weather-meta{color:var(--muted);font-size:14px;margin-bottom:14px}
+
+.icon-temp{
+  display:grid;grid-template-columns:70px 1fr;align-items:center;
+  gap:14px;margin-bottom:10px;
+}
+.temp{font-size:36px;font-weight:800;margin:0}
+.condition{font-size:18px;color:#333}
+
+/* BADGES STATIC WIDE BOXES */
+.badges{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:10px;
+}
+.badge{
+  background:#f6f7fb;border:1px solid #e2e5ea;border-radius:10px;
+  padding:10px;font-weight:600;
 }
 
-/* .header1 {
-  font: ""
-} */
-
-.first-div {
-  font-family: "sans-serif";
-  text-align: "center";
-  padding: "40px";
-  /* background:; */
-  /* min-height: "100vh"; */
+/* RIGHT COLUMN — TODAY STATS */
+.stats-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:12px;
 }
+.stat{
+  background:#f7f7fb;border:1px solid #e3e5ea;border-radius:12px;
+  padding:12px;
+}
+.stat .label{font-size:13px;color:#777}
+.stat .value{font-size:20px;font-weight:700;color:#111}
+
+/* FORECAST FULL WIDTH BELOW BOTH COLUMNS */
+.forecast-section { grid-column: 1 / span 2; margin-top: 20px; }
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.forecast-card {
+  background: #ffffff;
+  color: var(--text);          /* <-- make text dark inside cards */
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 10px;
+}
+
+.forecast-card .day {
+  font-weight: 800;
+  color: var(--text);          /* ensure day label is dark */
+}
+
+.forecast-card .range {
+  color: var(--muted);         /* lighter secondary text */
+  font-size: 14px;
+}
+
